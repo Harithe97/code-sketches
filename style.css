@@ -1,4 +1,63 @@
 body{
 	font-family: 'Courier New', Courier, monospace;
-	background-color: rgb(189, 246, 81);
+	background-color: rgb(255, 255, 255);
+	max-width: 400px;
+	margin: auto;
+	font-size: 35px;
+}
+* {font-weight: inherit;}
+
+
+/* Navigation */
+nav ul { list-style-type: none; padding: 0;}
+nav ul { margin-top: 1rem;}
+
+a { color: inherit;}
+
+a {
+  text-decoration-style: dotted;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgb(0, 255, 0);
+  text-decoration-skip-ink: none;
+  text-underline-offset: 0.25em;
+  display: inline-block;
+  transition: transform 0.2s ease, opacity 0.2s ease, color 0.2s ease;
+}
+
+
+img { max-width:  100%; opacity: 75%; 
+}
+a:hover {
+	background: rgb(139, 169, 199);
+	color: aliceblue;
+	transform: scale(1.05);
+}
+
+a:hover img {
+	opacity: 1;
+}
+.gallery {
+display: grid;
+gap: 4rem;
+grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr));
+grid-auto-rows: 1fr;
+}
+
+.card {
+    position: relative;
+}
+
+.card h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 70px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    color: rgb(255, 255, 255);
+	mix-blend-mode: difference;
+
+	
+	transform: translate(-50%, -50%); 
+
 }

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oblique Strategies</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="ProjectNav"> <a href="index.html">Home</a></div>
+
+    <h1 id="Strategy">...</h1>
+ 
+    <script src="oblique-stratiges.js"></script>
+    <script>
+ 
+        window.onload = function(){
+            var strategy = document.getElementById("Strategy");
+            strategy.innerHTML = "Hello.";
+ 
+ 
+            //version 1 - pile ou face
+            //if( Math.random() > 0.5 ){
+            //  strategy.innerHTML = "World.";
+            //}
+ 
+            // const Strategies = [
+                // "Chaton", //0
+                // "Loutre", //1
+                // "Chevre", //2
+                // "Platypus" //3
+            // ];
+ 
+            // version "comprehensible"
+            // let total = Strategies.length; //100
+            // let rando = Math.random();       // 0.345678
+            // let hasar = rando * total;       // 34.5678
+            // let choix = Math.floor( hasar );//34
+ 
+            //strategy.innerHTML = Strategies[ choix ];
+ 
+            // version compacte
+            strategy.innerHTML = Strategies[ Math.floor( Math.random()* Strategies.length) ];
+        }
+ 
+    </script>
+
+	<style>
+		body{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			min-height: 80vh;
+			background-color: aliceblue;
+		}
+		#Strategy{
+				font-size: clamp( 1rem,4vw,12rem);
+				font-weight: 400;
+
+				width: 25ch;
+				aspect-ratio: 16/9;
+
+				padding: 3rem;
+				background-color: rgb(208, 233, 255);
+				border: 2px solid #7dbdd8;
+				border-radius: 3rem;
+				box-shadow: 0.2rem 0.3rem 1rem #6f86d2;
+		}
+		button { opacity: 0.3; transition: opacity 0.3s ease, transform 0.3s ease;}
+		button:hover { opacity: 1;transform: scale(1.1) }
+       
+		#ProjectNav { position: absolute; top: 1rem; left: 1rem;}
+ 
+
+	</style>
+
+	<button onclick="window.location.reload()"
+	> ⌘ &thinsp;R</button>
+ 
+</body>
+</html>

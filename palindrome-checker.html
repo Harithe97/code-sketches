@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Palindrome</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="ProjectNav"> <a href="index.html">Home</a></div>
+	<h1>We can checking teh words !</h1>
+
+	<div id="UI">
+		<input type="text" name="" id="InputString" placeholder="back words">
+		<button id="theButton">Check</button>
+		<p id="feedback">feedback here</p>
+	</div>
+
+	<script>
+		console.clear();
+		console.log("bonjour");
+
+		const theFeedback = document.getElementById("feedback");
+		theFeedback.innerHTML = "bla bla bla chaton";
+
+		 const theButton = document.getElementById("theButton")
+		 theButton.addEventListener("click", checkTheText); 
+
+		function  checkTheText(){
+			console.log("we are checking the texts");
+
+			const theInupt = document.getElementById("InputString");
+			console.log(theInupt.value);
+
+			if( theInupt.value == "chaton"){
+				console.log("yes");
+				theFeedback.innerHTML = "Error: input is a kitten";
+			}
+			else if( theInupt.value == ""){
+				theFeedback.innerHTML = "fill in the form, dumbass.";
+			}
+
+			else if ( checkPalindrome(theInupt.value) == true ){
+				console.log("yes");
+				theFeedback.innerHTML = "Yeeep ," + theInupt.value + " is a palindrome";
+			}
+
+			else{
+				console.log("no");
+				theFeedback.innerHTML = "Nope";
+			}
+
+			theInupt.value ==""; // Vider apres usage
+
+		}// Check the text
+
+		function checkPalindrome(str){
+			//console.log("Palindrome Check: " + str);
+
+		str = str.replaceAll(" ","");	
+
+		let theLetters = str.split("")
+		let verlan = theLetters.reverse();
+		let rts = verlan.join("");
+
+		console.log("rts = " + rts);
+
+		if ( str == rts){
+			return true;
+		}
+		else {
+			return false;
+		}
+
+		}
+
+	</script>	
+</body>
+</html>
