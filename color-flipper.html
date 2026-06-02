@@ -2,68 +2,116 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Web dev - Color flipper</title>
-	<style>
-		body {
-			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-		}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web dev - Color flipper</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            min-height: 100vh;
+            
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            gap: 16px;
 
-		button {
-			opacity: 0.3;
-			transition: opacity 0.3s ease, transform 0.3s ease;
-		}
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
 
-		button:hover {
-			opacity: 1;
-			transform: scale(1.2);
-		}
-	</style>
+        /* Positions the home container neatly in the top-left corner */
+        #ProjectNav {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+        }
+
+        /* Combined selectors so your Home link behaves and looks exactly like the buttons */
+        button, #ProjectNav a {
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px; 
+            background-color: rgba(255, 255, 255, 0.85);
+            color: #1a1a1a;
+            
+            cursor: pointer;
+            text-decoration: none; /* Removes the ugly default link underline */
+            display: inline-block; /* Allows width/padding properties to apply safely to an <a> tag */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        /* Hover animation states shared between links and buttons */
+        button:hover, #ProjectNav a:hover {
+            background-color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            color: #1a1a1a; /* Guarantees font color stays dark gray on hover */
+        }
+
+        /* Active click states shared between links and buttons */
+        button:active, #ProjectNav a:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            width: 100%;
+            text-align: center;
+            margin: 0 0 24px 0;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+    </style>
 </head>
 
 <body>
-	<h1>We can flipping teh colors! </h1>
-	<button onclick="setColorChaton('PapayaWhip')">Papaya-Whip</button>
-	<button onclick="setColorChaton('Peachpuff')">Peach Puff</button>
-	<button onclick="setColorChaton('Powderblue')">Powder Blue</button>
-	<button onclick="randomColor()"> Random </button>
+    
+    <div id="ProjectNav"> 
+        <a href="index.html">Home</a>
+    </div>
 
-	<script>
-		const body = document.getElementsByTagName("body")[0];
-		//body.style.backgroundColor = "PapayaWhip";
+    <h1>We can flipping teh colors! </h1>
+    <button onclick="setColorChaton('PapayaWhip')">Papaya-Whip</button>
+    <button onclick="setColorChaton('Peachpuff')">Peach Puff</button>
+    <button onclick="setColorChaton('Powderblue')">Powder Blue</button>
+    <button onclick="randomColor()"> Random </button>
 
-		setColorChaton("grey");
-		function setColorChaton(name) {
-			body.style.backgroundColor = name;
-		}
+    <script>
+        const body = document.getElementsByTagName("body")[0];
 
-		function randomColor() {
-			console.log("Hi!");
-			let R = Math.round(Math.random() * 255);
-			let G = Math.round(Math.random() * 255);
-			let B = Math.round(Math.random() * 255);
+        setColorChaton("grey");
+        function setColorChaton(name) {
+            body.style.backgroundColor = name;
+        }
 
-			//Plus lon
-			let theColor = "rgb(" + R + "," + G + "," + B + ")";
+        function randomColor() {
+            console.log("Hi!");
+            let R = Math.round(Math.random() * 255);
+            let G = Math.round(Math.random() * 255);
+            let B = Math.round(Math.random() * 255);
 
-			//Plus Simple
-			theColor = `rgb( ${R} , ${G} , ${B} )`;
+            // Dynamic String Template
+            let theColor = `rgb( ${R} , ${G} , ${B} )`;
+            body.style.backgroundColor = theColor;
 
-			body.style.backgroundColor = theColor;
-
-			if (R + G + B < 350) {
-				body.style.color = "white";
-			}
-			else {
-				body.style.color = "black";
-			}
-		}
-
-
-
-	</script>
-
+            // Simple contrast checker changes main page font colors on extreme values
+            if (R + G + B < 350) {
+                body.style.color = "white";
+            }
+            else {
+                body.style.color = "black";
+            }
+        }
+    </script>
 </body>
-
 </html>

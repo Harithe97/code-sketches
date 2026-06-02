@@ -1,64 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Harith</title>
-	<link rel="stylesheet" href="style.css">
-	<script src="p5.js"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harith</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="p5.js"></script>
 </head>
 <body>
-	<h1>⠀CYCLES⠀</h1>
-	
-	<h1>Code Experiments</h1>
+
+<header class="site-header">
+    <h1 class="main-title">CREATIVE EXPLORATIONS</h1>
+    
+    <div class="toggle-switch">
+        <a href="index.html" class="toggle-btn active">CODE</a>
+        <a href="video.html" class="toggle-btn">VIDEO</a>
+    </div>
+</header>
 
     <div class="gallery">
         
         <a href="circles.html">
-			<div class="card">
-            <img src="circles.png" alt="">
-			<h1>Circles</h1>
-			</div>
+            <div class="card">
+                <img src="circles.png" alt="">
+                <h1>Circles</h1>
+            </div>
         </a>
 
-		<a href="trippylines.html">
-			<div class="card">
-			<img src="trippylines.png" alt="">
-			<h1>TrippyLines</h1>
-			</div>
-			
-		</a>
+        <a href="trippylines.html">
+            <div class="card">
+                <img src="trippylines.png" alt="">
+                <h1>Trippy<br>Lines</h1> 
+            </div>
+        </a>
 
-
-		<a href="MatrixChine.html">
-			<div class="card">
-			<img src="MatrixChine.png" alt="">
-			<h1>Matrix</h1>
-			</div>
-		</a>
+        <a href="MatrixChine.html" class="wide">
+            <div class="card">
+                <img src="MatrixChine.png" alt="">
+                <h1>Matrix</h1>
+            </div>
+        </a>
 
         <a href="checkers.html">
-			<div class="card">
-			<img src="checkers.png" alt="">
-				<h1>CheckMate</h1>
-			</div>
-		</a>
-       
-    </div>
+            <div class="card">
+                <img src="checkers.png" alt="">
+                <h1>Check<br>Mate</h1>
+            </div>
+        </a>
 
+        <a href="fibonacci.html" class="wide">
+            <div class="card">
+                <img src="fibonacci.png" alt="">
+                <h1>Fibonacci</h1>
+            </div>
+        </a>
+        
+        <a href="Sinhala.html">
+            <div class="card">
+                <img src="Sinhala.png" alt="">
+                <h1>sinhala</h1>
+            </div>
+        </a>
+        
+        <a href="moving.html">
+            <div class="card">
+                <img src="moving.png" alt="">
+                <h1>MOVE</h1>
+            </div>
+        </a>
+        
+        <a href="404.html">
+            <div class="card">
+                <img src="404.png" alt="">
+                <h1>404</h1>
+            </div>
+        </a>
+ 
+        <a href="traces.html" class="wide">
+            <div class="card">
+                <img src="traces.png" alt="">
+                <h1>WAVES</h1>
+            </div>
+        </a>
+    </div>
 
     <div class="lb" id="lb" aria-hidden="true">
         <button type="button" aria-label="Fermer">×</button>
         <iframe allow="camera; microphone; autoplay"></iframe>
     </div>
-    <style>
-        .lb { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: none; z-index: 9999; }
-        .lb.open { display: block; }
-        .lb iframe { position: absolute; top: 5vh; left: 5vw; width: 90vw; height: 90vh; border: 0; background: #fff; }
-        .lb button { z-index: 99; position: absolute; top: 1rem; right: 1rem; width: 3rem; height: 3rem; font-size: 1.5rem; background: #fff; border: 0; cursor: pointer; }
-    </style>
+
+    <nav class="glass-dock">
+        <ul>
+            <li><a href="color-flipper.html">color-flipper</a></li>
+            <li><a href="palindrome-checker.html">palindrome-checker</a></li>
+            <li><a href="oblique-stratergies.html">Oblique Strategies</a></li>
+        </ul>
+    </nav>
+
     <script>
+        // Lightbox Core Engine
         function makeLightbox(){
             const lb = document.getElementById('lb');
             const frame = lb.querySelector('iframe');
@@ -68,23 +108,25 @@
             const shut = () => { frame.src = 'about:blank'; lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); };
         
             document.querySelectorAll('.gallery a').forEach(a => {
-            a.addEventListener('click', e => { e.preventDefault(); open(a.href); });
+                a.addEventListener('click', e => { 
+                    e.preventDefault(); 
+                    open(a.getAttribute('href')); 
+                });
             });
             close.addEventListener('click', shut);
             lb.addEventListener('click', e => { if (e.target === lb) shut(); });
             document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('open')) shut(); });
         }
         makeLightbox();
+
+        // Top Switch Controls Engine
+        const toggleButtons = document.querySelectorAll('.toggle-btn');
+        toggleButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                toggleButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
     </script>
-	
-	
-	<nav>
-		<ul> <a href="color-flipper.html"> color-flipper </a></ul>
-		<ul><a href="palindrome-checker.html"> palindrome-checker </a></ul>
-		<ul><a href="oblique-stratergies.html"> Oblique Stratergies </a></ul>
-
-	</nav>
-
-
 </body>
 </html>

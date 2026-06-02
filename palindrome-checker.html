@@ -1,78 +1,195 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Palindrome</title>
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome</title>
+    <style>
+        /* --- GLOBAL LAYOUT & CENTER ALIGNMENT --- */
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            min-height: 100vh;
+            background-color: #e0e0e0; /* Matches your gray design theme background */
+            
+            /* Forces everything on the page to lock onto the exact center axis */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- STYLISH HOME BUTTON (Capsule Design) --- */
+        #ProjectNav {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+        }
+
+        #ProjectNav a {
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 50px; 
+            background-color: rgba(255, 255, 255, 0.85);
+            color: #1a1a1a;
+            
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        #ProjectNav a:hover {
+            background-color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            color: #1a1a1a;
+        }
+
+        #ProjectNav a:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- CONTENT STYLES --- */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0 0 24px 0;
+            letter-spacing: -0.03em;
+            color: #1a1a1a;
+        }
+
+        #UI {
+            background-color: #ffffff; 
+            width: 100%;
+            max-width: 420px; /* Perfectly scaled to look clean on desktop screens */
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06); 
+            
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-sizing: border-box;
+        }
+
+        /* Modernized Form Elements */
+        #InputString {
+            font-family: inherit;
+            font-size: 1rem;
+            padding: 14px 20px;
+            border: 1px solid #dddddd;
+            border-radius: 50px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        #InputString:focus {
+            border-color: #1a1a1a;
+        }
+
+        #theButton {
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 50px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        #theButton:hover {
+            background-color: #333333;
+            transform: translateY(-2px);
+        }
+
+        #theButton:active {
+            transform: translateY(0);
+        }
+
+        #feedback {
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #555555;
+            margin: 8px 0 0 0;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div id="ProjectNav"> <a href="index.html">Home</a></div>
-	<h1>We can checking teh words !</h1>
 
-	<div id="UI">
-		<input type="text" name="" id="InputString" placeholder="back words">
-		<button id="theButton">Check</button>
-		<p id="feedback">feedback here</p>
-	</div>
+    <div id="ProjectNav"> 
+        <a href="index.html">Home</a>
+    </div>
 
-	<script>
-		console.clear();
-		console.log("bonjour");
+    <h1>We can checking teh words !</h1>
 
-		const theFeedback = document.getElementById("feedback");
-		theFeedback.innerHTML = "bla bla bla chaton";
+    <div id="UI">
+        <input type="text" id="InputString" placeholder="type a palindrome...">
+        <button id="theButton">Check</button>
+        <p id="feedback">feedback here</p>
+    </div>
+    
+    <script>
+        console.clear();
+        console.log("bonjour");
 
-		 const theButton = document.getElementById("theButton")
-		 theButton.addEventListener("click", checkTheText); 
+        const theFeedback = document.getElementById("feedback");
+        theFeedback.innerHTML = "Waiting for input... 😺";
 
-		function  checkTheText(){
-			console.log("we are checking the texts");
+        const theButton = document.getElementById("theButton");
+        theButton.addEventListener("click", checkTheText); 
 
-			const theInupt = document.getElementById("InputString");
-			console.log(theInupt.value);
+        function checkTheText(){
+            console.log("we are checking the texts");
 
-			if( theInupt.value == "chaton"){
-				console.log("yes");
-				theFeedback.innerHTML = "Error: input is a kitten";
-			}
-			else if( theInupt.value == ""){
-				theFeedback.innerHTML = "fill in the form, dumbass.";
-			}
+            const theInput = document.getElementById("InputString");
+            const valueCleaned = theInput.value.trim();
 
-			else if ( checkPalindrome(theInupt.value) == true ){
-				console.log("yes");
-				theFeedback.innerHTML = "Yeeep ," + theInupt.value + " is a palindrome";
-			}
+            if(valueCleaned.toLowerCase() == "chaton"){
+                theFeedback.innerHTML = "Error: input is a kitten 🐈";
+            }
+            else if(valueCleaned == ""){
+                theFeedback.innerHTML = "Fill in the form, dummy.";
+            }
+            else if (checkPalindrome(valueCleaned) == true){
+                theFeedback.innerHTML = "Yeeep, \"" + valueCleaned + "\" is a palindrome!";
+            }
+            else{
+                theFeedback.innerHTML = "Nope, not a palindrome.";
+            }
 
-			else{
-				console.log("no");
-				theFeedback.innerHTML = "Nope";
-			}
+            theInput.value = ""; // FIXED: Assignment statement resets field correctly after use
+        }
 
-			theInupt.value ==""; // Vider apres usage
+        function checkPalindrome(str){
+            // Sanitizes input strings by cutting empty tracking spaces
+            str = str.replaceAll(" ", "").toLowerCase();   
 
-		}// Check the text
+            let theLetters = str.split("");
+            let verlan = theLetters.reverse();
+            let rts = verlan.join("");
 
-		function checkPalindrome(str){
-			//console.log("Palindrome Check: " + str);
+            console.log("rts = " + rts);
 
-		str = str.replaceAll(" ","");	
-
-		let theLetters = str.split("")
-		let verlan = theLetters.reverse();
-		let rts = verlan.join("");
-
-		console.log("rts = " + rts);
-
-		if ( str == rts){
-			return true;
-		}
-		else {
-			return false;
-		}
-
-		}
-
-	</script>	
+            if (str == rts){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    </script>   
 </body>
 </html>

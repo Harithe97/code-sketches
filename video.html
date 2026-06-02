@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Explorations - Video Gallery</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <h1 class="main-title">CREATIVE EXPLORATIONS</h1>
+        
+        <div class="toggle-switch">
+            <a href="index.html" class="toggle-btn">CODE</a>
+            <a href="video.html" class="toggle-btn active">VIDEO</a>
+        </div>
+    </header>
+
+    <main class="slideshow-section">
+        <div class="slider-frame">
+            
+            <div class="slide active">
+                <video src="video1.mp4" muted loop playsinline></video>
+                <div class="dark-overlay"></div>
+                <div class="slide-content">
+                    <h2 class="slide-title">3D</h2>
+                    <p class="slide-desc">Projet réalisé dans le cadre d’un projet scolaire. Conçu à l’aide des logiciels Cinema 4D et Adobe After Effects.</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <video src="video2.mp4" muted loop playsinline></video>
+                <div class="dark-overlay"></div>
+                <div class="slide-content">
+                    <h2 class="slide-title">3D</h2>
+                    <p class="slide-desc">Projet réalisé dans le cadre d’un projet scolaire. Conçu à l’aide des logiciels Cinema 4D et Adobe After Effects.</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <video src="video3.mp4" muted loop playsinline></video>
+                <div class="dark-overlay"></div>
+                <div class="slide-content">
+                    <h2 class="slide-title">2D</h2>
+                    <p class="slide-desc">Projet d’animation 2D traditionnelle réalisé à titre personnel, motivé par ma passion pour l’animation 2D. Réalisé avec Adobe Photoshop et Adobe After Effects.</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <video src="video4.mp4" muted loop playsinline></video>
+                <div class="dark-overlay"></div>
+                <div class="slide-content">
+                    <h2 class="slide-title">MOTION</h2>
+                    <p class="slide-desc">Animation en motion design réalisée dans le cadre de mon activité professionnelle pour Dolce & Gabbana. Créée à l’aide d’Adobe After Effects.</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <video src="video5.mp4" muted loop playsinline></video>
+                <div class="dark-overlay"></div>
+                <div class="slide-content">
+                    <h2 class="slide-title">MOTION</h2>
+                    <p class="slide-desc">Animation de logo réalisée dans le cadre d’un projet scolaire. Conçue avec Adobe After Effects.</p>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="slider-controls">
+            <button class="control-btn prev-btn">&#10094;</button>
+            <button class="control-btn next-btn">&#10095;</button>
+        </div>
+    </main>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        let currentIdx = 0;
+
+        function showSlide(index) {
+            if (index >= slides.length) {
+                currentIdx = 0;
+            } else if (index < 0) {
+                currentIdx = slides.length - 1;
+            } else {
+                currentIdx = index;
+            }
+
+            slides.forEach((slide, i) => {
+                const video = slide.querySelector('video');
+                
+                if (i === currentIdx) {
+                    slide.classList.add('active');
+                    video.play().catch(error => {
+                        console.log("Autoplay context initialization waiting for user interaction.", error);
+                    });
+                } else {
+                    slide.classList.remove('active');
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            });
+        }
+
+        nextBtn.addEventListener('click', () => showSlide(currentIdx + 1));
+        prevBtn.addEventListener('click', () => showSlide(currentIdx - 1));
+
+        // Fullscreen Patch: Applied directly onto the slide element container click
+        slides.forEach(slide => {
+            slide.addEventListener('click', () => {
+                const video = slide.querySelector('video');
+                
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.webkitEnterFullscreen) { 
+                    /* Absolute fix for iOS Safari / iPhones */
+                    video.webkitEnterFullscreen();
+                } else if (video.webkitRequestFullscreen) { 
+                    /* Desktop Safari fix */
+                    video.webkitRequestFullscreen();
+                } else if (video.msRequestFullscreen) { 
+                    /* IE11 compatibility code */
+                    video.msRequestFullscreen();
+                }
+            });
+        });
+
+        showSlide(currentIdx);
+    </script>
+</body>
+</html>
