@@ -1,6 +1,4 @@
-/* ==========================================
-   1. GLOBAL RESET & LAYOUT ALIGNMENT 
-   ========================================== */
+/*  GLOBAL */
 * {
     box-sizing: border-box;
     font-weight: inherit;
@@ -17,11 +15,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 20px 140px 20px; /* Generous bottom padding to clear the fixed dock */
+    padding: 40px 20px 140px 20px; 
 }
 
-/* 
-   2. SITE HEADERS */
+/* SITE HEADERS */
 .site-header {
     text-align: center;
     margin-bottom: 2rem;
@@ -68,7 +65,12 @@ body {
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.06);
 }
 
-/* 3. PROFESSIONAL SHOWCASE GRID */
+.site-logo {
+    max-height: 300px; 
+    width: auto;      
+}
+
+/* 3. SHOWCASE GRID */
 
 .gallery {
     display: grid;
@@ -100,36 +102,36 @@ body {
 
 /* Bento Box Column Modifiers */
 .gallery a.wide {
-    grid-column: span 2; /* Tells wide elements to extend across 2 columns */
+    grid-column: span 2;
 }
 
-/* --- RESPONSIVE BREAKPOINTS --- */
+
 @media (max-width: 1024px) {
     .gallery { 
-        grid-template-columns: repeat(2, 1fr); /* Simplifies to 2 columns on tablets */
+        grid-template-columns: repeat(2, 1fr); 
         grid-auto-rows: 240px;
     }
 }
 
 @media (max-width: 680px) {
     .gallery { 
-        grid-template-columns: 1fr; /* Stack everything flat on mobile screens */
+        grid-template-columns: 1fr; 
         grid-auto-rows: 220px;
         gap: 1rem;
     }
     .gallery a.wide {
-        grid-column: span 1; /* Stops wide cards from overflowing screen edge */
+        grid-column: span 1; 
     }
 }
 
 /* --- CARD GRAPHICAL STYLES --- */
 .card { 
-    background: #ffffff;
-    border-radius: 24px; /* Slightly increased to match look of your Figma file */
+    background: #000000;
+    border-radius: 24px; 
     overflow: hidden;
     position: relative; 
     width: 100%;
-    height: 100%; /* Fills layout slot dimensions perfectly instead of forcing 1:1 ratio */
+    height: 100%; 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
     display: flex;
     align-items: center;
@@ -162,7 +164,7 @@ body {
 
 .card h1 {
     font-family: Arial, Helvetica, sans-serif !important;
-    font-size: 3.5rem !important; /* Slightly optimized to prevent text clippings on square cards */
+    font-size: 3.5rem !important; 
     font-weight: 700 !important;
     position: absolute;
     top: 50%;
@@ -178,15 +180,13 @@ body {
     letter-spacing: normal;
 }
 
-/* ==========================================
-   4. PREMIUM FLOATING GLASSMORPHIC DOCK
-   ========================================== */
+/* FLOATING DOCK */
 .glass-dock {
     position: fixed;
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.65);
+    background: r ba(255, 255, 255, 0.65);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid rgba(255, 255, 255, 0.4);
@@ -226,9 +226,7 @@ body {
     transform: translateY(-1px) !important;
 }
 
-/* ==========================================
-   5. UNTOUCHED COMPONENT INTERFACE FOR APPS
-   ========================================== */
+/* INTERFACE FOR APPS */
 #UI {
     background-color: #ffffff; 
     width: 100%;
@@ -337,7 +335,7 @@ body {
 }
 
 
-/*  6. TOGGLE BUTTON VIDEO - CODE */
+/*  TOGGLE BUTTON VIDEO - CODE */
 
 .toggle-btn {
     display: inline-block;
@@ -345,9 +343,9 @@ body {
     color: inherit; 
 }
 
-/*  7. PAGE VIDEO */
+/*  PAGE VIDEO */
 
-/* Global Reset and Font Assignment */
+/* Global */
 body {
     margin: 0;
     padding: 0;
@@ -366,7 +364,7 @@ body {
 
 .main-title {
     font-size: 1.8rem;
-    font-weight: 700; /* Bold */
+    font-weight: 700; 
     letter-spacing: 4px;
     margin: 0 0 20px 0;
     color: #111111;
@@ -421,7 +419,7 @@ body {
     aspect-ratio: 16 / 9;
     background-color: #000000;
     overflow: hidden;
-    border: 3px solid #3b82f6; /* Blue blueprint frame */
+    border: 3px solid #3b82f6; 
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
     cursor: pointer;
 }
@@ -450,7 +448,7 @@ body {
     object-fit: cover;
 }
 
-/* Linear dark mask overlaying the video track */
+/*  dark mask overlay */
 .dark-overlay {
     position: absolute;
     top: 0;
@@ -458,7 +456,7 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%);
-    pointer-events: none; /* Passes click events through to parent slide frame */
+    pointer-events: none; 
     z-index: 3;
 }
 
@@ -470,24 +468,24 @@ body {
     transform: translateY(-50%);
     max-width: 50%;
     color: #ffffff;
-    pointer-events: none; /* Prevents text elements from blocking fullscreen interactions */
+    pointer-events: none
     z-index: 4;
 }
 
 .slide-title {
     font-size: 3.8rem;
-    font-weight: 700; /* Bold */
+    font-weight: 700; 
     margin: 0 0 10px 0;
     letter-spacing: 2px;
 }
 
 .slide-desc {
     font-size: 0.95rem;
-    font-weight: 400; /* Regular */
+    font-weight: 400; 
     line-height: 1.6;
     letter-spacing: 0.5px;
     opacity: 0.9;
-    text-transform: uppercase; /* Converts your French input to uppercase matching the mockup layout */
+    text-transform: uppercase;
 }
 
 /* Navigation System Controls */

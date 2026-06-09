@@ -14,7 +14,9 @@
 <body>
 
     <header class="site-header">
-        <h1 class="main-title">CREATIVE EXPLORATIONS</h1>
+          <h1 class="main-title">
+        <img src="site-logo.png" alt="Creative Explorations Logo" class="site-logo">
+    </h1>
         
         <div class="toggle-switch">
             <a href="index.html" class="toggle-btn">CODE</a>
@@ -112,7 +114,7 @@
         nextBtn.addEventListener('click', () => showSlide(currentIdx + 1));
         prevBtn.addEventListener('click', () => showSlide(currentIdx - 1));
 
-        // Fullscreen Patch: Applied directly onto the slide element container click
+ 
         slides.forEach(slide => {
             slide.addEventListener('click', () => {
                 const video = slide.querySelector('video');
@@ -120,13 +122,13 @@
                 if (video.requestFullscreen) {
                     video.requestFullscreen();
                 } else if (video.webkitEnterFullscreen) { 
-                    /* Absolute fix for iOS Safari / iPhones */
+               
                     video.webkitEnterFullscreen();
                 } else if (video.webkitRequestFullscreen) { 
-                    /* Desktop Safari fix */
+               
                     video.webkitRequestFullscreen();
                 } else if (video.msRequestFullscreen) { 
-                    /* IE11 compatibility code */
+                 
                     video.msRequestFullscreen();
                 }
             });
